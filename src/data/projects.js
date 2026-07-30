@@ -41,22 +41,6 @@ export const projects = [
     github: "https://github.com/RafaelSilva308/saloes-agendamento",
   },
   {
-    id: "saas-radar",
-    name: "SaaS Radar",
-    category: "automacao",
-    tagline: "Automação de pesquisa de tendências de mercado com IA",
-    description:
-      "Robô de pesquisa que varre Reddit e Product Hunt em busca de dores e oportunidades de negócio, analisa cada achado com IA (Claude) e organiza tudo automaticamente em um banco de dados no Notion — nicho, demanda, público-alvo, concorrentes e sugestão de MVP.",
-    highlights: [
-      "Coleta automática em Reddit e Product Hunt",
-      "Análise e estruturação via IA",
-      "Sincronização automática com Notion",
-      "Rodagem agendada, zero intervenção manual",
-    ],
-    stack: ["Python", "Claude API", "Notion API"],
-    github: "https://github.com/RafaelSilva308/Radar_SaaS",
-  },
-  {
     id: "gracie-barra-gama",
     name: "Gracie Barra Gama",
     category: "landing",

@@ -20,9 +20,6 @@ export default function Contact() {
           >
             {profile.whatsappDisplay}
           </a>
-          <a className="btn btn-ghost btn-lg" href={`mailto:${profile.email}`}>
-            {profile.email}
-          </a>
         </div>
       </div>
     </section>

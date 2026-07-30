@@ -4,7 +4,6 @@ export const profile = {
   github: "https://github.com/RafaelSilva308",
   whatsapp: "5561993468620",
   whatsappDisplay: "+55 61 99346-8620",
-  email: "rafael.lome301.1510@gmail.com",
 };
 
 export const services = [

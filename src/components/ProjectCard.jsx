@@ -35,9 +35,6 @@ export default function ProjectCard({ project }) {
             Ver demonstração
           </a>
         )}
-        <a href={project.github} target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm">
-          Código no GitHub
-        </a>
       </div>
     </article>
   );

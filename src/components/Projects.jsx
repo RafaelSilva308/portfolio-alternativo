@@ -2,7 +2,13 @@ import { useMemo, useState } from "react";
 import { CATEGORIES, projects } from "../data/projects";
 import ProjectCard from "./ProjectCard";
 
-const FILTERS = [{ id: "all", label: "Todos" }, ...Object.entries(CATEGORIES).map(([id, c]) => ({ id, label: c.label }))];
+const activeCategories = new Set(projects.map((p) => p.category));
+const FILTERS = [
+  { id: "all", label: "Todos" },
+  ...Object.entries(CATEGORIES)
+    .filter(([id]) => activeCategories.has(id))
+    .map(([id, c]) => ({ id, label: c.label })),
+];
 
 export default function Projects() {
   const [filter, setFilter] = useState("all");
@@ -19,8 +25,8 @@ export default function Projects() {
           <p className="eyebrow">Portfólio</p>
           <h2>Projetos</h2>
           <p className="section-lead">
-            Uma seleção de sistemas, automações e landing pages que desenvolvi
-            e coloquei no ar — todos com código aberto no GitHub.
+            Uma seleção de sistemas e landing pages que desenvolvi e coloquei
+            no ar.
           </p>
         </div>
 
