@@ -19,4 +19,4 @@ npm run dev
 npm run build
 ```
 
-Publicado automaticamente no GitHub Pages a cada push na branch `main`.
+Publicado automaticamente no GitHub Pages a cada push na branch `master`.
