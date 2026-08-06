@@ -236,6 +236,18 @@ h1, h2, h3, h4 {
   background: radial-gradient(ellipse at center, rgba(129, 140, 248, 0.35), rgba(34, 211, 238, 0.12) 45%, transparent 70%);
   filter: blur(20px);
   pointer-events: none;
+  animation: hero-glow-breathe 16s ease-in-out infinite;
+}
+
+@keyframes hero-glow-breathe {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(-50%) translateY(14px);
+    opacity: 0.65;
+  }
 }
 
 .hero-inner {
@@ -688,5 +700,9 @@ h1, h2, h3, h4 {
 
   .btn-primary::after {
     display: none;
+  }
+
+  .hero-glow {
+    animation: none;
   }
 }
