@@ -1,8 +1,13 @@
 import { profile } from "../data/profile";
 import { projects } from "../data/projects";
+import { useCountUp } from "../hooks/useCountUp";
 
 export default function Hero() {
   const projectCount = projects.length;
+
+  const projectsStat = useCountUp(projectCount, { duration: 1200 });
+  const frentesStat = useCountUp(3, { duration: 1200 });
+  const codeStat = useCountUp(100, { duration: 1200, suffix: "%" });
 
   return (
     <section id="top" className="hero">
@@ -36,15 +41,15 @@ export default function Hero() {
 
         <div className="hero-stats">
           <div>
-            <strong>{projectCount}</strong>
+            <strong ref={projectsStat.ref}>{projectsStat.display}</strong>
             <span>projetos entregues</span>
           </div>
           <div>
-            <strong>3</strong>
+            <strong ref={frentesStat.ref}>{frentesStat.display}</strong>
             <span>frentes de atuação</span>
           </div>
           <div>
-            <strong>100%</strong>
+            <strong ref={codeStat.ref}>{codeStat.display}</strong>
             <span>código aberto no GitHub</span>
           </div>
         </div>
