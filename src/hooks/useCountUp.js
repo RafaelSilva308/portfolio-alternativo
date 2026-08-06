@@ -33,7 +33,7 @@ export function useCountUp(end, { duration = 1200, suffix = "" } = {}) {
           const startTime = performance.now();
 
           const tick = (now) => {
-            const progress = Math.min((now - startTime) / duration, 1);
+            const progress = Math.min(Math.max((now - startTime) / duration, 0), 1);
             setValue(Math.round(end * easeOutCubic(progress)));
             if (progress < 1) {
               frameId = requestAnimationFrame(tick);
