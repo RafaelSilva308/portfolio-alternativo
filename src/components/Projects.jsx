@@ -45,8 +45,8 @@ export default function Projects() {
         </div>
 
         <div className="projects-grid">
-          {visible.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {visible.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </div>

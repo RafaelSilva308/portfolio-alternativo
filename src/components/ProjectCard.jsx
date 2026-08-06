@@ -1,11 +1,14 @@
 import { CATEGORIES } from "../data/projects";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, index = 0 }) {
   const category = CATEGORIES[project.category];
+  const { ref, className } = useScrollReveal({ index });
 
   return (
     <article
-      className={`project-card ${project.featured ? "is-featured" : ""}`}
+      ref={ref}
+      className={`project-card ${project.featured ? "is-featured" : ""} ${className}`}
       style={{ "--accent": category.color }}
     >
       <div className="project-card-top">

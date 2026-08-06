@@ -1,4 +1,5 @@
 import { services } from "../data/profile";
+import ServiceCard from "./ServiceCard";
 
 export default function Services() {
   return (
@@ -14,21 +15,8 @@ export default function Services() {
         </div>
 
         <div className="services-grid">
-          {services.map((service) => (
-            <article
-              key={service.id}
-              className="service-card"
-              style={{ "--accent": service.color }}
-            >
-              <div className="service-icon" />
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <ul>
-                {service.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
+          {services.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
       </div>
