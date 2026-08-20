@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { profile } from "../data/profile";
 import { useScrollProgress } from "../hooks/useScrollProgress";
 import { usePointer } from "../hooks/usePointer";
+import { useInViewport } from "../hooks/useInViewport";
 import HeroScene from "../three/HeroScene";
 
 const LINES = [
@@ -40,12 +41,16 @@ export default function Hero({ active = true }) {
   const wrapperRef = useRef(null);
   const progress = useScrollProgress(wrapperRef);
   const pointerRef = usePointer();
+  // retoma um pouco antes de reaparecer, para não haver quadro parado na volta
+  const inViewport = useInViewport(wrapperRef, "200px");
 
   return (
     <section id="top" className="hero-pin-wrapper" ref={wrapperRef}>
       <div className="hero-pin-inner">
         <div className="hero-canvas-layer" aria-hidden="true">
-          {active && <HeroScene progress={progress} pointerRef={pointerRef} />}
+          {active && (
+            <HeroScene progress={progress} pointerRef={pointerRef} paused={!inViewport} />
+          )}
         </div>
         <div className="hero-vignette" aria-hidden="true" />
 

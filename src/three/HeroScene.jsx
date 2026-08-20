@@ -4,11 +4,14 @@ import Astronaut from "./Astronaut";
 import SpaceObjects from "./SpaceObjects";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
-export default function HeroScene({ progress = 0, pointerRef }) {
+export default function HeroScene({ progress = 0, pointerRef, paused = false }) {
   const isLowPower = useMediaQuery("(max-width: 720px)");
 
   return (
     <Canvas
+      // fora da viewport o loop para: sem isto a GPU segue desenhando a cena
+      // inteira enquanto o visitante lê o resto da página (bateria/calor)
+      frameloop={paused ? "never" : "always"}
       dpr={[1, isLowPower ? 1.5 : 1.75]}
       gl={{ antialias: true, alpha: true }}
       camera={{ position: [0, 0, 5.4], fov: 42 }}
