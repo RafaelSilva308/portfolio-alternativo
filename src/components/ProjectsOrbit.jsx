@@ -5,6 +5,7 @@ import { CATEGORIES, projects } from "../data/projects";
 const TOTAL = projects.length;
 const MAX_SCROLL = 3000;
 const CARD_WIDTH = 64;
+const TOUCH_SENSITIVITY = 1.5;
 
 const lerp = (start, end, t) => start * (1 - t) + end * t;
 
@@ -126,7 +127,7 @@ export default function ProjectsOrbit() {
     };
     const handleTouchMove = (e) => {
       const touchY = e.touches[0].clientY;
-      const deltaY = touchStartY - touchY;
+      const deltaY = (touchStartY - touchY) * TOUCH_SENSITIVITY;
       touchStartY = touchY;
 
       const atTop = scrollRef.current <= 0;
@@ -292,7 +293,9 @@ export default function ProjectsOrbit() {
             const arcCenterY = arcApexY + arcRadius;
 
             const spreadAngle = isMobile ? 100 : 130;
-            const startAngle = -90 - spreadAngle / 2;
+            // O primeiro projeto (index 0) começa ancorado no ápice (centralizado),
+            // e os demais se abrem para a direita — assim nada nasce escondido à esquerda.
+            const startAngle = -90;
             const step = spreadAngle / (TOTAL - 1);
 
             const scrollProgress = Math.min(Math.max(rotateValue / 360, 0), 1);
