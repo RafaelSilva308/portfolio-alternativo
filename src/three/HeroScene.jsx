@@ -1,6 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import Astronaut from "./Astronaut";
+import SpaceObjects from "./SpaceObjects";
 
 export default function HeroScene({ progress = 0, pointerRef }) {
   return (
@@ -14,6 +15,7 @@ export default function HeroScene({ progress = 0, pointerRef }) {
       <directionalLight position={[4, 6, 4]} intensity={1.5} color="#ffe3c2" />
       <directionalLight position={[-4, -2, -3]} intensity={0.35} color="#22d3ee" />
       <Stars radius={70} depth={35} count={1500} factor={2.2} saturation={0} fade speed={0.4} />
+      <SpaceObjects progress={progress} pointerRef={pointerRef} />
       <Astronaut progress={progress} pointerRef={pointerRef} />
     </Canvas>
   );
