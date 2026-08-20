@@ -1020,6 +1020,75 @@ h1, h2, h3, h4 {
   color: var(--text-dim);
 }
 
+/* Cockpit — controles de toque */
+.cockpit-touch-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cockpit-stick {
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  margin: -64px 0 0 -64px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(245, 241, 232, 0.22);
+  background: rgba(5, 5, 7, 0.3);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.cockpit-stick-knob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--accent-2), var(--accent));
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  transform: translate(-50%, -50%);
+}
+
+.cockpit-boost {
+  position: absolute;
+  right: 22px;
+  bottom: 34px;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  background: rgba(255, 106, 44, 0.16);
+  color: var(--text);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cockpit-boost:active {
+  background: rgba(255, 106, 44, 0.42);
+  transform: scale(0.95);
+}
+
+.cockpit-instructions.is-touch {
+  left: 20px;
+  right: 124px;
+  bottom: 30px;
+  padding: 0;
+  transform: none;
+  text-align: left;
+  white-space: normal;
+}
+
 /* Responsive */
 @media (max-width: 860px) {
   .feature-grid {
@@ -1105,6 +1174,11 @@ h1, h2, h3, h4 {
     font-size: 0.62rem;
     white-space: normal;
     padding: 0 20px;
+  }
+
+  /* sobe o card para não colidir com o botão de boost */
+  .cockpit-project-card {
+    bottom: 140px;
   }
 }
 
