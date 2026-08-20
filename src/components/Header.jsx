@@ -8,7 +8,7 @@ const LINKS = [
   { href: "#contato", label: "Contato" },
 ];
 
-export default function Header() {
+export default function Header({ onPlay }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -22,6 +22,7 @@ export default function Header() {
     <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="container header-inner">
         <a href="#top" className="brand">
+          <span className="brand-avatar" aria-hidden="true">RS</span>
           Rafael<span className="brand-dot">.</span>dev
         </a>
 
@@ -35,21 +36,16 @@ export default function Header() {
 
         <div className="header-actions">
           <a
-            className="btn btn-ghost header-github"
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-          <a
-            className="btn btn-primary header-cta"
+            className="btn btn-ghost btn-sm header-cta"
             href={`https://wa.me/${profile.whatsapp}`}
             target="_blank"
             rel="noreferrer"
           >
-            Falar no WhatsApp
+            WhatsApp
           </a>
+          <button type="button" className="btn btn-play btn-sm" onClick={onPlay}>
+            Play
+          </button>
           <button
             className="nav-toggle"
             aria-label="Abrir menu"

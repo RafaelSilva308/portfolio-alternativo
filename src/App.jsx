@@ -1,23 +1,33 @@
+import { useCallback, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Services from "./components/Services";
-import Projects from "./components/Projects";
+import Marquee from "./components/Marquee";
+import FeatureSections from "./components/FeatureSections";
+import ProjectsCarousel from "./components/ProjectsCarousel";
 import About from "./components/About";
-import Contact from "./components/Contact";
+import CTA from "./components/CTA";
 import Footer from "./components/Footer";
+import Cockpit from "./three/Cockpit";
 
 export default function App() {
+  const [cockpitOpen, setCockpitOpen] = useState(false);
+
+  const openCockpit = useCallback(() => setCockpitOpen(true), []);
+  const closeCockpit = useCallback(() => setCockpitOpen(false), []);
+
   return (
     <>
-      <Header />
+      <Header onPlay={openCockpit} />
       <main>
-        <Hero />
-        <Services />
-        <Projects />
+        <Hero active={!cockpitOpen} />
+        <Marquee />
+        <FeatureSections />
+        <ProjectsCarousel />
         <About />
-        <Contact />
+        <CTA onPlay={openCockpit} />
       </main>
       <Footer />
+      {cockpitOpen && <Cockpit onClose={closeCockpit} />}
     </>
   );
 }

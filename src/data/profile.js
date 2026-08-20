@@ -1,15 +1,18 @@
 export const profile = {
   name: "Rafael Silva",
-  role: "Desenvolvedor de Sistemas & Landing Pages",
+  role: "Desenvolvedor Full Stack & Consultor",
   github: "https://github.com/RafaelSilva308",
   whatsapp: "5561993468620",
   whatsappDisplay: "+55 61 99346-8620",
+  email: "rafael.lome301.1510@gmail.com",
 };
 
 export const services = [
   {
     id: "sistemas",
     title: "Sistemas & SaaS",
+    headline: "Plataformas que escalam.",
+    icon: "🖥️",
     color: "#818cf8",
     description:
       "Plataformas web sob medida: dashboards, agendamento, cadastros e regras de negócio próprias — do banco de dados à interface.",
@@ -18,6 +21,8 @@ export const services = [
   {
     id: "landing-pages",
     title: "Landing Pages",
+    headline: "Páginas que convertem.",
+    icon: "🚀",
     color: "#fb923c",
     description:
       "Páginas de alta conversão para negócios locais e profissionais autônomos, com foco em gerar contato e agendamento.",
@@ -26,6 +31,8 @@ export const services = [
   {
     id: "automacao",
     title: "Automação com IA",
+    headline: "Automação que economiza tempo.",
+    icon: "🤖",
     color: "#22d3ee",
     description:
       "Robôs e integrações que usam IA para pesquisar, analisar e organizar informação automaticamente, eliminando trabalho manual repetitivo.",

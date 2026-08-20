@@ -1,7 +1,7 @@
 export const CATEGORIES = {
-  sistema: { label: "Sistemas & SaaS", color: "#818cf8" },
-  automacao: { label: "Automação com IA", color: "#22d3ee" },
-  landing: { label: "Landing Pages", color: "#fb923c" },
+  sistema: { label: "Sistemas & SaaS", color: "#818cf8", icon: "🖥️" },
+  automacao: { label: "Automação com IA", color: "#22d3ee", icon: "🤖" },
+  landing: { label: "Landing Pages", color: "#fb923c", icon: "🚀" },
 };
 
 export const projects = [
