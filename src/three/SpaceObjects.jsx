@@ -29,7 +29,6 @@ function SpaceBody({
   emissiveIntensity = 0,
   ring,
   moon,
-  glow,
   start,
   end,
   spin = 0.08,
@@ -47,7 +46,6 @@ function SpaceBody({
   const ringMat = useRef(null);
   const moonGroup = useRef(null);
   const moonMat = useRef(null);
-  const glowMat = useRef(null);
 
   useFrame((state, delta) => {
     const node = group.current;
@@ -73,7 +71,6 @@ function SpaceBody({
     if (mainMat.current) mainMat.current.opacity = visible * baseOpacity;
     if (ringMat.current) ringMat.current.opacity = visible * 0.8;
     if (moonMat.current) moonMat.current.opacity = visible;
-    if (glowMat.current) glowMat.current.opacity = visible * 0.35;
   });
 
   return (
@@ -116,13 +113,6 @@ function SpaceBody({
           </mesh>
         </group>
       )}
-
-      {glow && (
-        <mesh>
-          <sphereGeometry args={[radius * 1.9, 16, 16]} />
-          <meshBasicMaterial ref={glowMat} color={color} transparent opacity={0} />
-        </mesh>
-      )}
     </group>
   );
 }
@@ -136,7 +126,6 @@ const PLANETS = [
     emissive: ACCENT_2,
     emissiveIntensity: 0.55,
     roughness: 0.4,
-    glow: true,
     start: 0,
     end: 0.22,
     spin: 0.02,
