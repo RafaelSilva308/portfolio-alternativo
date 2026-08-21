@@ -1,6 +1,11 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
+import sunTexture from "../assets/textures/sun.jpg";
+import ringedGiantTexture from "../assets/textures/ringed-giant.jpg";
+import cyanMoonletTexture from "../assets/textures/cyan-moonlet.jpg";
+import duskPlanetTexture from "../assets/textures/dusk-planet.jpg";
 
 const CREAM_DARK = "#cdc5b4";
 const ACCENT = "#ff6a2c";
@@ -32,6 +37,7 @@ function SpaceBody({
   floatSpeed = 0.2,
   parallax = 0.03,
   baseOpacity = 1,
+  texture,
   progress,
   pointerRef,
 }) {
@@ -76,7 +82,9 @@ function SpaceBody({
         <sphereGeometry args={[radius, 28, 28]} />
         <meshStandardMaterial
           ref={mainMat}
-          color={color}
+          map={texture}
+          emissiveMap={texture && emissive ? texture : undefined}
+          color={texture ? "#ffffff" : color}
           roughness={roughness}
           metalness={metalness}
           emissive={emissive}
@@ -126,7 +134,7 @@ const PLANETS = [
     radius: 1.6,
     color: ACCENT_2,
     emissive: ACCENT_2,
-    emissiveIntensity: 1.1,
+    emissiveIntensity: 0.55,
     roughness: 0.4,
     glow: true,
     start: 0,
@@ -206,11 +214,25 @@ const ASTEROIDS = Array.from({ length: ASTEROID_COUNT }, (_, i) => {
   };
 });
 
+const PLANET_TEXTURES = {
+  sun: sunTexture,
+  "ringed-giant": ringedGiantTexture,
+  "cyan-moonlet": cyanMoonletTexture,
+  "dusk-planet": duskPlanetTexture,
+};
+
 export default function SpaceObjects({ progress = 0, pointerRef }) {
+  const textures = useTexture(PLANET_TEXTURES);
+
+  Object.values(textures).forEach((tex) => {
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.wrapS = THREE.RepeatWrapping;
+  });
+
   return (
     <group>
       {PLANETS.map(({ key, ...body }) => (
-        <SpaceBody key={key} {...body} progress={progress} pointerRef={pointerRef} />
+        <SpaceBody key={key} {...body} texture={textures[key]} progress={progress} pointerRef={pointerRef} />
       ))}
       {ASTEROIDS.map(({ key, ...body }) => (
         <SpaceBody key={key} {...body} progress={progress} pointerRef={pointerRef} />
