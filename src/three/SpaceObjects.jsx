@@ -187,6 +187,14 @@ const PLANETS = [
   },
 ];
 
+const PLANET_TEXTURES = {
+  sun: sunTexture,
+  "ringed-giant": ringedGiantTexture,
+  "cyan-moonlet": cyanMoonletTexture,
+  "dusk-planet": duskPlanetTexture,
+};
+const TEXTURE_KEYS = Object.keys(PLANET_TEXTURES);
+
 const ASTEROID_COUNT = 6;
 const ASTEROIDS = Array.from({ length: ASTEROID_COUNT }, (_, i) => {
   const seed = i * 12.9898;
@@ -211,15 +219,9 @@ const ASTEROIDS = Array.from({ length: ASTEROID_COUNT }, (_, i) => {
     floatSpeed: 0.3 + rand(9) * 0.3,
     parallax: 0.07 + rand(10) * 0.05,
     baseOpacity: 0.85,
+    textureKey: TEXTURE_KEYS[Math.floor(rand(11) * TEXTURE_KEYS.length)],
   };
 });
-
-const PLANET_TEXTURES = {
-  sun: sunTexture,
-  "ringed-giant": ringedGiantTexture,
-  "cyan-moonlet": cyanMoonletTexture,
-  "dusk-planet": duskPlanetTexture,
-};
 
 export default function SpaceObjects({ progress = 0, pointerRef }) {
   const textures = useTexture(PLANET_TEXTURES);
@@ -234,8 +236,8 @@ export default function SpaceObjects({ progress = 0, pointerRef }) {
       {PLANETS.map(({ key, ...body }) => (
         <SpaceBody key={key} {...body} texture={textures[key]} progress={progress} pointerRef={pointerRef} />
       ))}
-      {ASTEROIDS.map(({ key, ...body }) => (
-        <SpaceBody key={key} {...body} progress={progress} pointerRef={pointerRef} />
+      {ASTEROIDS.map(({ key, textureKey, ...body }) => (
+        <SpaceBody key={key} {...body} texture={textures[textureKey]} progress={progress} pointerRef={pointerRef} />
       ))}
     </group>
   );
